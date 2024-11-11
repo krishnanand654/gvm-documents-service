@@ -5,6 +5,15 @@ import { PdfData } from '../Models/Data';
 
 export class TC_TemplateServices{
 
+    private filesDir:string;
+
+    constructor(){
+        this.filesDir = path.join(__dirname, '../../Files');
+        if (!fs.existsSync(this.filesDir)) {
+            fs.mkdirSync(this.filesDir, { recursive: true }); 
+        }
+    }
+
     async  createPdf(data: PdfData): Promise<Uint8Array> {
         const pdfDoc = await PDFDocument.create();
         const page = pdfDoc.addPage([595, 842]); // A4 size in points (8.27 x 11.69 inches)
@@ -155,7 +164,10 @@ export class TC_TemplateServices{
         page.drawText("Gayathri Vidya Mandir", {  x:450, y:80, size: 10, font:fontBold, color: rgb(0, 0, 0) });
         
         const pdfBytes = await pdfDoc.save();
-        const outputPath = path.join(__dirname, `../../Files/TC.pdf`);
+
+      
+
+        const outputPath = path.join(this.filesDir, 'TC.pdf');
         fs.writeFileSync(outputPath, pdfBytes);
         return pdfBytes;
     }

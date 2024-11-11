@@ -6,11 +6,9 @@ export class DownloadService {
     if (!fileName) {
       throw new Error('File name is required');
     }
+  
+    const filePath = path.join(__dirname, '../../', 'Files', fileName);
 
-    // Path to the directory where your files are stored
-    const filePath = path.join(__dirname, '..', 'Files', fileName);
-
-    // Check if the file exists
     if (!fs.existsSync(filePath)) {
       throw new Error('File not found');
     }
