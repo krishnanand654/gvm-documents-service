@@ -2,7 +2,6 @@ import { Request, Response } from 'express';
 import { TC_TemplateServices } from '../Services/TC_TemplateServices';
 
 
-
 export class TemplateController {
 
     private pdfService: TC_TemplateServices;
