@@ -140,12 +140,42 @@ class TC_TemplateServices {
             const pdfBytes = yield pdfDoc.save();
             // const outputPath = path.join(__dirname,process.env.FILE_PATH, 'TC.pdf');
             // const outputPath = path.join(process.env.FILE_PATH, 'TC.pdf');
-            const blob_url = yield (0, blob_1.put)('TC.pdf', pdfBytes, {
-                access: 'public',
-            });
+            // this.deleteAllBlobs().catch((error) => {
+            //     console.error('An error occurred:', error);
+            //   });
+            // const blob_url = await put('TC.pdf', pdfBytes, {
+            //     access: 'public',
+            //   });
             // fs.writeFileSync(outputPath, pdfBytes);
             // return pdfBytes;
-            return blob_url;
+            // return blob_url;
+            try {
+                yield this.deleteAllBlobs();
+                const blob_url = yield (0, blob_1.put)('TC.pdf', pdfBytes, {
+                    access: 'public',
+                });
+                return blob_url;
+            }
+            catch (error) {
+                console.error('An error occurred during blob deletion:', error);
+                throw new Error('Failed to delete blobs before uploading the new file.');
+            }
+        });
+    }
+    deleteAllBlobs() {
+        return __awaiter(this, void 0, void 0, function* () {
+            let cursor;
+            do {
+                const listResult = yield (0, blob_1.list)({
+                    cursor,
+                    limit: 1000,
+                });
+                if (listResult.blobs.length > 0) {
+                    yield (0, blob_1.del)(listResult.blobs.map((blob) => blob.url));
+                }
+                cursor = listResult.cursor;
+            } while (cursor);
+            console.log('All blobs were deleted');
         });
     }
 }

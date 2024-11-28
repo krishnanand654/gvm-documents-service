@@ -29,7 +29,7 @@ class AuthService {
             if (!validatePassword) {
                 throw new Error('Invalid password');
             }
-            const token = jsonwebtoken_1.default.sign({ userId: user.id }, JWT_SECRET, { expiresIn: "1h" });
+            const token = jsonwebtoken_1.default.sign({ userId: user.id }, JWT_SECRET, { expiresIn: "2 days" });
             return { token, userId: user.id };
         });
     }

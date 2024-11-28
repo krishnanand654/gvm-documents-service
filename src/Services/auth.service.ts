@@ -21,7 +21,7 @@ class AuthService{
             throw new Error('Invalid password');
         }
 
-        const token = jwt.sign({userId: user.id}, JWT_SECRET, {expiresIn: "1h"});
+        const token = jwt.sign({userId: user.id}, JWT_SECRET, {expiresIn: "2 days"});
         return {token, userId: user.id};
     }
 }
