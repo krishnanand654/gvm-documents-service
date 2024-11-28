@@ -170,7 +170,7 @@ export class TC_TemplateServices{
 
       
         // const outputPath = path.join(__dirname,process.env.FILE_PATH, 'TC.pdf');
-        const outputPath = path.join(process.cwd(),process.env.FILE_PATH, 'TC.pdf');
+        const outputPath = path.join(process.env.FILE_PATH, 'TC.pdf');
         fs.writeFileSync(outputPath, pdfBytes);
         return pdfBytes;
     }

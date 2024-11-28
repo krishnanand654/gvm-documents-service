@@ -140,7 +140,7 @@ class TC_TemplateServices {
             page.drawText("Gayathri Vidya Mandir", { x: 450, y: 80, size: 10, font: fontBold, color: (0, pdf_lib_1.rgb)(0, 0, 0) });
             const pdfBytes = yield pdfDoc.save();
             // const outputPath = path.join(__dirname,process.env.FILE_PATH, 'TC.pdf');
-            const outputPath = path_1.default.join(process.cwd(), process.env.FILE_PATH, 'TC.pdf');
+            const outputPath = path_1.default.join(process.env.FILE_PATH, 'TC.pdf');
             fs_1.default.writeFileSync(outputPath, pdfBytes);
             return pdfBytes;
         });
