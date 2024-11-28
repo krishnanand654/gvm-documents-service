@@ -2,13 +2,16 @@ import { PDFDocument, rgb, StandardFonts } from 'pdf-lib';
 import fs from 'fs';
 import path from 'path';
 import { PdfData } from '../Models/Data';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 export class TC_TemplateServices{
 
     private filesDir:string;
 
     constructor(){
-        this.filesDir = path.join(__dirname, '../../Files');
+        this.filesDir = path.join(__dirname, process.env.FILE_PATH);
         if (!fs.existsSync(this.filesDir)) {
             fs.mkdirSync(this.filesDir, { recursive: true }); 
         }
@@ -104,7 +107,7 @@ export class TC_TemplateServices{
         
         drawText("Standard in which the pupil was last enrolled (in words)", 50, 466);
         drawText(":", 300, 466);
-        drawText(data.lastStandard || 'standard', 320, 466);
+        drawText(data.lastEnrolled || 'standard', 320, 466);
         
         drawText("Date of Admission or promotion to that Standard", 50, 444);
         drawText(":", 300, 444);
@@ -112,7 +115,7 @@ export class TC_TemplateServices{
         
         drawText("Whether qualified for promotion to a Higher Standard:", 50, 422);
         drawText(":", 300, 422);
-        drawText(data.promotionQualified ? 'Yes' : 'No', 320, 422);
+        drawText(data.qualifiedForPromotion ? 'Yes' : 'No', 320, 422);
         
         drawText("Whether the pupil has paid all the fees due to School:", 50, 400);
         drawText(":", 300, 400);
@@ -136,7 +139,7 @@ export class TC_TemplateServices{
         
         drawText("Date of Issue of the Certificate:", 50, 290);
         drawText(":", 300, 290);
-        drawText(data.issueDate || 'date', 320, 290);
+        drawText(data.certificateIssueDate || 'date', 320, 290);
         
         drawText("Reason for leaving:", 50, 268);
         drawText(":", 300, 268);
@@ -144,19 +147,19 @@ export class TC_TemplateServices{
         
         drawText("School to which the pupil intends proceeding:", 50, 246);
         drawText(":", 300, 246);
-        drawText(data.nextSchool || 'school', 320, 246);
+        drawText(data.intendsProceeding || 'school', 320, 246);
         
         drawText("Number of School days unto the date:", 50, 224);
         drawText(":", 300, 224);
-        drawText(data.schoolDays || '0', 320, 224);
+        drawText(data.schoolDaysUntoDate || '0', 320, 224);
         
         drawText("Number of School days pupil attended:", 50, 202);
         drawText(":", 300, 202);
-        drawText(data.daysAttended || '0', 320, 202);
+        drawText(data.schoolDaysAttended || '0', 320, 202);
         
         drawText("Character and Conduct:", 50, 180);
         drawText(":", 300, 180);
-        drawText(data.characterConduct || 'good', 320, 180);
+        drawText(data.characterAndConduct || 'good', 320, 180);
     
         drawText("PRINCIPAL", 50, 100);
         drawText("School Seal", 250, 100);

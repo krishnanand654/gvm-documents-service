@@ -6,6 +6,7 @@ export class TemplateController {
 
     private pdfService: TC_TemplateServices;
 
+
     constructor() {
         this.pdfService = new TC_TemplateServices();
     }
@@ -21,4 +22,5 @@ export class TemplateController {
             res.status(500).json({ error: 'Failed to generate PDF' });
         }
     }
+  
 }

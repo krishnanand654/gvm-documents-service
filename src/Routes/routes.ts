@@ -8,16 +8,13 @@ const router = express.Router();
 const templateController = new TemplateController();
 const downloadController = new DownloadController();
 
-
 router.post('/generate-pdf',authenticateJWT, (req, res) => {
   templateController.createPdf(req, res);  
 });
 
-
 router.get('/download-pdf', authenticateJWT, (req, res) => {
   downloadController.downloadFile(req, res);  
 });
-
 
 router.post("/login", AuthController.login);  
 
