@@ -9,7 +9,7 @@ export class DownloadService {
   
     // const filePath = path.join(__dirname, '../../', 'Files', fileName);
     
-    const filePath = path.join(process.cwd(), process.env.FILE_PATH, fileName);
+    const filePath = path.join(process.cwd(), 'tmp', fileName);
 
     if (!fs.existsSync(filePath)) {
       throw new Error(`${process.cwd()}/ ${process.env.FILE_PATH} File not found`);

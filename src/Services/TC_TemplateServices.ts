@@ -2,6 +2,7 @@ import { PDFDocument, rgb, StandardFonts } from 'pdf-lib';
 import fs from 'fs';
 import path from 'path';
 import { PdfData } from '../Models/Data';
+import { put } from '@vercel/blob';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -170,8 +171,15 @@ export class TC_TemplateServices{
 
       
         // const outputPath = path.join(__dirname,process.env.FILE_PATH, 'TC.pdf');
-        const outputPath = path.join(process.env.FILE_PATH, 'TC.pdf');
-        fs.writeFileSync(outputPath, pdfBytes);
+        // const outputPath = path.join(process.env.FILE_PATH, 'TC.pdf');
+
+        const blob = await put('TC.pdf', pdfBytes, {
+            access: 'public',
+          });
+        
+        // fs.writeFileSync(outputPath, pdfBytes);
+        // return pdfBytes;
+
         return pdfBytes;
     }
       

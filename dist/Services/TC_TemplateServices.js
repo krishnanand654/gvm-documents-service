@@ -14,8 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TC_TemplateServices = void 0;
 const pdf_lib_1 = require("pdf-lib");
-const fs_1 = __importDefault(require("fs"));
-const path_1 = __importDefault(require("path"));
+const blob_1 = require("@vercel/blob");
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 class TC_TemplateServices {
@@ -140,8 +139,12 @@ class TC_TemplateServices {
             page.drawText("Gayathri Vidya Mandir", { x: 450, y: 80, size: 10, font: fontBold, color: (0, pdf_lib_1.rgb)(0, 0, 0) });
             const pdfBytes = yield pdfDoc.save();
             // const outputPath = path.join(__dirname,process.env.FILE_PATH, 'TC.pdf');
-            const outputPath = path_1.default.join(process.env.FILE_PATH, 'TC.pdf');
-            fs_1.default.writeFileSync(outputPath, pdfBytes);
+            // const outputPath = path.join(process.env.FILE_PATH, 'TC.pdf');
+            const blob = yield (0, blob_1.put)('TC.pdf', pdfBytes, {
+                access: 'public',
+            });
+            // fs.writeFileSync(outputPath, pdfBytes);
+            // return pdfBytes;
             return pdfBytes;
         });
     }
