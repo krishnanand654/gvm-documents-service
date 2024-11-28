@@ -18,10 +18,10 @@ class TemplateController {
     createPdf(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const pdfBytes = yield this.pdfService.createPdf(req.body);
+                const url = yield this.pdfService.createPdf(req.body);
                 res.setHeader('Content-Type', 'application/pdf');
                 res.setHeader('Content-Disposition', 'attachment; filename=generated.pdf');
-                res.status(200).send(pdfBytes);
+                res.status(200).send(url);
             }
             catch (error) {
                 console.log(error);

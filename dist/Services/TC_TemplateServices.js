@@ -140,12 +140,12 @@ class TC_TemplateServices {
             const pdfBytes = yield pdfDoc.save();
             // const outputPath = path.join(__dirname,process.env.FILE_PATH, 'TC.pdf');
             // const outputPath = path.join(process.env.FILE_PATH, 'TC.pdf');
-            const blob = yield (0, blob_1.put)('TC.pdf', pdfBytes, {
+            const blob_url = yield (0, blob_1.put)('TC.pdf', pdfBytes, {
                 access: 'public',
             });
             // fs.writeFileSync(outputPath, pdfBytes);
             // return pdfBytes;
-            return pdfBytes;
+            return blob_url;
         });
     }
 }

@@ -18,7 +18,7 @@ export class TC_TemplateServices{
     //     }
     // }
 
-    async  createPdf(data: PdfData): Promise<Uint8Array> {
+    async  createPdf(data: PdfData): Promise<string> {
         const pdfDoc = await PDFDocument.create();
         const page = pdfDoc.addPage([595, 842]); // A4 size in points (8.27 x 11.69 inches)
     
@@ -173,14 +173,15 @@ export class TC_TemplateServices{
         // const outputPath = path.join(__dirname,process.env.FILE_PATH, 'TC.pdf');
         // const outputPath = path.join(process.env.FILE_PATH, 'TC.pdf');
 
-        const blob = await put('TC.pdf', pdfBytes, {
+        const blob_url = await put('TC.pdf', pdfBytes, {
             access: 'public',
           });
+        
         
         // fs.writeFileSync(outputPath, pdfBytes);
         // return pdfBytes;
 
-        return pdfBytes;
+        return blob_url;
     }
       
 }

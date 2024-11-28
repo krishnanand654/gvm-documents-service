@@ -13,10 +13,10 @@ export class TemplateController {
 
     async createPdf(req: Request, res: Response) {
         try {
-            const pdfBytes = await this.pdfService.createPdf(req.body);
+            const url = await this.pdfService.createPdf(req.body);
             res.setHeader('Content-Type', 'application/pdf');
             res.setHeader('Content-Disposition', 'attachment; filename=generated.pdf');
-            res.status(200).send(pdfBytes);
+            res.status(200).send(url);
         } catch (error) {
             console.log(error)
             res.status(500).json({ error: 'Failed to generate PDF' });
