@@ -21,7 +21,8 @@ class DownloadService {
             if (!fileName) {
                 throw new Error('File name is required');
             }
-            const filePath = path_1.default.join(__dirname, '../../', 'Files', fileName);
+            // const filePath = path.join(__dirname, '../../', 'Files', fileName);
+            const filePath = path_1.default.join(process.cwd(), fileName);
             if (!fs_1.default.existsSync(filePath)) {
                 throw new Error('File not found');
             }

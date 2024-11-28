@@ -7,7 +7,9 @@ export class DownloadService {
       throw new Error('File name is required');
     }
   
-    const filePath = path.join(__dirname, '../../', 'Files', fileName);
+    // const filePath = path.join(__dirname, '../../', 'Files', fileName);
+
+    const filePath = path.join(process.cwd(), fileName);
 
     if (!fs.existsSync(filePath)) {
       throw new Error('File not found');

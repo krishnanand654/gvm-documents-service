@@ -8,14 +8,14 @@ dotenv.config();
 
 export class TC_TemplateServices{
 
-    private filesDir:string;
+    // private filesDir:string;
 
-    constructor(){
-        this.filesDir = path.join(__dirname, process.env.FILE_PATH);
-        if (!fs.existsSync(this.filesDir)) {
-            fs.mkdirSync(this.filesDir, { recursive: true }); 
-        }
-    }
+    // constructor(){
+    //     this.filesDir = path.join(__dirname, process.env.FILE_PATH);
+    //     if (!fs.existsSync(this.filesDir)) {
+    //         fs.mkdirSync(this.filesDir, { recursive: true }); 
+    //     }
+    // }
 
     async  createPdf(data: PdfData): Promise<Uint8Array> {
         const pdfDoc = await PDFDocument.create();
@@ -169,8 +169,8 @@ export class TC_TemplateServices{
         const pdfBytes = await pdfDoc.save();
 
       
-
-        const outputPath = path.join(this.filesDir, 'TC.pdf');
+        // const outputPath = path.join(__dirname,process.env.FILE_PATH, 'TC.pdf');
+        const outputPath = path.join(process.env.FILE_PATH, 'TC.pdf');
         fs.writeFileSync(outputPath, pdfBytes);
         return pdfBytes;
     }

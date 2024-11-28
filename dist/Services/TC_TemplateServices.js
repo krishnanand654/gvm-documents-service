@@ -19,12 +19,13 @@ const path_1 = __importDefault(require("path"));
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 class TC_TemplateServices {
-    constructor() {
-        this.filesDir = path_1.default.join(__dirname, process.env.FILE_PATH);
-        if (!fs_1.default.existsSync(this.filesDir)) {
-            fs_1.default.mkdirSync(this.filesDir, { recursive: true });
-        }
-    }
+    // private filesDir:string;
+    // constructor(){
+    //     this.filesDir = path.join(__dirname, process.env.FILE_PATH);
+    //     if (!fs.existsSync(this.filesDir)) {
+    //         fs.mkdirSync(this.filesDir, { recursive: true }); 
+    //     }
+    // }
     createPdf(data) {
         return __awaiter(this, void 0, void 0, function* () {
             const pdfDoc = yield pdf_lib_1.PDFDocument.create();
@@ -138,7 +139,8 @@ class TC_TemplateServices {
             drawText("Co-Ordinator NIOS", 450, 100);
             page.drawText("Gayathri Vidya Mandir", { x: 450, y: 80, size: 10, font: fontBold, color: (0, pdf_lib_1.rgb)(0, 0, 0) });
             const pdfBytes = yield pdfDoc.save();
-            const outputPath = path_1.default.join(this.filesDir, 'TC.pdf');
+            // const outputPath = path.join(__dirname,process.env.FILE_PATH, 'TC.pdf');
+            const outputPath = path_1.default.join(process.env.FILE_PATH, 'TC.pdf');
             fs_1.default.writeFileSync(outputPath, pdfBytes);
             return pdfBytes;
         });
