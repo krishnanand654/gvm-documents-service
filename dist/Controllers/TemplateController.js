@@ -19,13 +19,13 @@ class TemplateController {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const url = yield this.pdfService.createPdf(req.body);
-                res.setHeader('Content-Type', 'application/pdf');
-                res.setHeader('Content-Disposition', 'attachment; filename=generated.pdf');
+                res.setHeader("Content-Type", "application/pdf");
+                res.setHeader("Content-Disposition", "attachment; filename=generated.pdf");
                 res.status(200).send(url);
             }
             catch (error) {
                 console.log(error);
-                res.status(500).json({ error: 'Failed to generate PDF' });
+                res.status(500).json({ error: "Failed to generate PDF" });
             }
         });
     }
