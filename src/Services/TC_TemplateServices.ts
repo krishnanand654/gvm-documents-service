@@ -20,14 +20,15 @@ export class TC_TemplateServices {
   // }
   private dob_with_word: string = "";
 
-  async convertDatatoWord(data: PdfData): Promise<any> {
+  async convertDatatoWord(data: PdfData): Promise<string> {
     return convertDate(data.dob);
   }
 
   async createPdf(data: PdfData): Promise<any> {
+
     try {
-      this.dob_with_word =
-        data.dob + " (" + (await this.convertDatatoWord(data)) + ")";
+      const word = await this.convertDatatoWord(data);
+      this.dob_with_word = data.dob + " (" + word + ")";
     } catch {
       console.log("Error in converting data to word");
     }
@@ -127,16 +128,8 @@ export class TC_TemplateServices {
       488
     );
     drawText(":", 300, 488);
-    drawText(
-      this.dob_with_word == "" ? data.dob : this.dob_with_word || "dob",
-      320,
-      488
-    );
-    drawText(
-      "Standard in which the pupil was last enrolled (in words)",
-      50,
-      466
-    );
+    drawText(this.dob_with_word == "" ? data.dob : this.dob_with_word || "dob",320,488);
+    drawText("Standard in which the pupil was last enrolled (in words)",50,466);
     drawText(":", 300, 466);
     drawText(data.lastEnrolled || "standard", 320, 466);
 

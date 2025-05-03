@@ -37,8 +37,8 @@ class TC_TemplateServices {
     createPdf(data) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                this.dob_with_word =
-                    data.dob + " (" + (yield this.convertDatatoWord(data)) + ")";
+                const word = yield this.convertDatatoWord(data);
+                this.dob_with_word = data.dob + " (" + word + ")";
             }
             catch (_a) {
                 console.log("Error in converting data to word");
