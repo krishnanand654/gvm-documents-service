@@ -127,7 +127,11 @@ export class TC_TemplateServices {
       488
     );
     drawText(":", 300, 488);
-    drawText(this.dob_with_word ? "" : data.dob || "dob", 320, 488);
+    drawText(
+      this.dob_with_word == "" ? data.dob : this.dob_with_word || "dob",
+      320,
+      488
+    );
     drawText(
       "Standard in which the pupil was last enrolled (in words)",
       50,
