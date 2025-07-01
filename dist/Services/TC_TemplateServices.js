@@ -112,7 +112,8 @@ class TC_TemplateServices {
             drawText(data.casteCategory || "caste", 320, 515);
             drawText("Date of birth according to Admission Register (in words)", 50, 488);
             drawText(":", 300, 488);
-            drawText(this.dob_with_word == "" ? data.dob : this.dob_with_word || "dob", 320, 488);
+            // drawText(this.dob_with_word == "" ? data.dob : this.dob_with_word || "dob",320,488);
+            drawText(data.dob || "dob", 320, 488);
             drawText("Standard in which the pupil was last enrolled (in words)", 50, 466);
             drawText(":", 300, 466);
             drawText(data.lastEnrolled || "standard", 320, 466);
