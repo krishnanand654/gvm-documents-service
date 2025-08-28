@@ -73,13 +73,13 @@ class TC_TemplateServices {
             drawText(data.tcNo || "", 320, 750);
             drawText("Name of School", 50, 715);
             drawText(":", 300, 715);
-            const schoolName = "Gayathri Vidhya Mandir\nVazhappally,Changanassery,\nAccredicted Agency of NIOS, OBE Programme";
+            const schoolName = "Gayathri Vidhya Mandir\nVazhappally,Changanassery,\nAccredited Agency of NIOS, OBE Programme";
             schoolName.split("\n").forEach((line, index) => {
                 drawText(line, 320, 725 - index * lineHeight);
             });
             drawText("Whether the school is a recognized School", 50, 675);
             drawText(":", 300, 675);
-            const recognition = "Yes, Recognized By NIOS\nAccredition No OB914416";
+            const recognition = "Yes, Recognized By NIOS\nAccreditation.No: OB914416";
             recognition.split("\n").forEach((line, index) => {
                 drawText(line, 320, 680 - index * lineHeight);
             });
