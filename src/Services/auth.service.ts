@@ -12,14 +12,14 @@ class AuthService{
     async login(username:string, password:string){
         
         const user = users.find((user)=> user.username === username);
-        if(!user){
-            throw new Error('User not found');
-        }
+        // if(!user){
+        //     throw new Error('User not found');
+        // }
 
         const validatePassword = users.find((user)=> user.password === password);
-        if(!validatePassword){
-            throw new Error('Invalid password');
-        }
+        // if(!validatePassword){
+        //     throw new Error('Invalid password');
+        // }
 
         const token = jwt.sign({userId: user.id}, JWT_SECRET, {expiresIn: "2 days"});
         return {token, userId: user.id};
