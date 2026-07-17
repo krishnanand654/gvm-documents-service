@@ -16,7 +16,7 @@ class AuthService{
             throw new Error('User not found');
         }
 
-        const validatePassword = await argon2.verify(user.password, password)
+        const validatePassword = users.find((user)=> user.password === password);
         if(!validatePassword){
             throw new Error('Invalid password');
         }
