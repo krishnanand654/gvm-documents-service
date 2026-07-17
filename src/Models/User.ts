@@ -11,7 +11,7 @@ export interface User {
 export const users: User[] = [
 {
     id: "1",
-    username: process.env.TEST_USERNAME as string,
+    username: "testPass@123",
     password: process.env.PASSWORD as string,
 }
 ];
