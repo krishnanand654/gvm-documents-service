@@ -12,7 +12,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const argon2_1 = __importDefault(require("argon2"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const User_1 = require("../Models/User");
 const dotenv_1 = __importDefault(require("dotenv"));
@@ -22,13 +21,13 @@ class AuthService {
     login(username, password) {
         return __awaiter(this, void 0, void 0, function* () {
             const user = User_1.users.find((user) => user.username === username);
-            if (!user) {
-                throw new Error('User not found');
-            }
-            const validatePassword = yield argon2_1.default.verify(user.password, password);
-            if (!validatePassword) {
-                throw new Error('Invalid password');
-            }
+            // if(!user){
+            //     throw new Error('User not found');
+            // }
+            const validatePassword = User_1.users.find((user) => user.password === password);
+            // if(!validatePassword){
+            //     throw new Error('Invalid password');
+            // }
             const token = jsonwebtoken_1.default.sign({ userId: user.id }, JWT_SECRET, { expiresIn: "2 days" });
             return { token, userId: user.id };
         });

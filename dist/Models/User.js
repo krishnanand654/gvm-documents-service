@@ -10,7 +10,7 @@ exports.users = [
     {
         id: "1",
         username: process.env.TEST_USERNAME,
-        password: process.env.PASSWORD,
+        password: "testPass@123",
     }
 ];
 //# sourceMappingURL=User.js.map
